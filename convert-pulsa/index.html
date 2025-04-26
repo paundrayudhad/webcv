@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wahyu Convert</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <div class="card">
+      <!-- Provider Step -->
+      <div id="provider-step" class="step active">
+        <div class="card-header">
+          <button class="back-button invisible">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m15 18-6-6 6-6"/>
+            </svg>
+          </button>
+          <h2 class="card-title">Formulir</h2>
+        </div>
+        <div class="card-content">
+          <div class="form-group">
+            <label for="provider">Provider</label>
+            <div class="select-wrapper">
+              <select id="provider" name="provider">
+                <option value="" disabled selected>Pilih Provider</option>
+                <!-- Options will be added by JavaScript -->
+              </select>
+              <div class="select-arrow"></div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <input type="number" id="phone-number" name="phoneNumber" placeholder="No Handphone">
+          </div>
+          
+          <div class="form-group">
+            <input type="number" id="nominal" name="nominal" placeholder="Nominal">
+          </div>
+          
+          <div id="rate-info" class="info-box amber hidden">
+            <div class="info-title">Rate 🔥</div>
+            <div id="range-info" class="info-text"></div>
+            <div id="rate-percentage" class="info-text"></div>
+          </div>
+          
+          <div id="amount-received" class="info-box green hidden">
+            <div class="info-title">Uang diterima</div>
+            <div id="amount-value" class="info-value"></div>
+          </div>
+          
+          <button id="next-to-bank" class="button primary">Selanjutnya</button>
+        </div>
+      </div>
+      
+      <!-- Bank Step -->
+      <div id="bank-step" class="step">
+        <div class="card-header">
+          <button class="back-button" id="back-to-provider">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m15 18-6-6 6-6"/>
+            </svg>
+          </button>
+          <h2 class="card-title">Formulir</h2>
+        </div>
+        <div class="card-content">
+          <div id="provider-summary" class="summary-box">
+            <h3 class="summary-title">Informasi Pulsa</h3>
+            <div class="summary-grid">
+              <div>Provider</div>
+              <div id="summary-provider" class="text-right font-medium"></div>
+              <div>Nomor</div>
+              <div id="summary-phone" class="text-right"></div>
+              <div>Nominal</div>
+              <div id="summary-nominal" class="text-right"></div>
+              <div>Rate</div>
+              <div id="summary-rate" class="text-right"></div>
+            </div>
+            <div class="summary-footer">
+              <div class="text-sm">Uang diterima</div>
+              <div id="summary-amount" class="text-green font-medium"></div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="select-wrapper">
+              <select id="bank" name="bank">
+                <option value="" disabled selected>Pilih Bank</option>
+                <option value="sakuku">SAKUKU</option>
+                <option value="bca">BCA</option>
+                <option value="linkaja">LINKAJA</option>
+                <option value="dana">DANA</option>
+                <option value="shopeepay">SHOPEEPAY</option>
+                <option value="gopay">GOPAY</option>
+                <option value="ovo">OVO</option>
+                <option value="mandiri">MANDIRI</option>
+                <option value="bni">BNI</option>
+                <option value="bri">BRI</option>
+                <option value="isaku">ISAKU</option>
+                <option value="cimb">CIMB NIAGA</option>
+                <option value="nagari">NAGARI</option>
+                <option value="bank_lain">BANK LAIN</option>
+                <option value="seabank">SEABANK</option>
+                <option value="bsi">BSI</option>
+                <option value="hana">KEB HANA / HANA BANK</option>
+                <option value="permata">PERMATA</option>
+                <option value="bank_jago">BANK JAGO</option>
+              </select>
+              <div class="select-arrow"></div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <input type="number" id="account-number" name="accountNumber" placeholder="No Rekening / No HP">
+          </div>
+          
+          <div class="form-group">
+            <input type="text" id="account-name" name="accountName" placeholder="Nama Anda">
+          </div>
+          
+          <button id="next-to-confirmation" class="button primary" disabled>Selanjutnya</button>
+        </div>
+      </div>
+      
+      <!-- Confirmation Step -->
+      <div id="confirmation-step" class="step">
+        <div class="card-header">
+          <button class="back-button" id="back-to-bank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m15 18-6-6 6-6"/>
+            </svg>
+          </button>
+          <h2 class="card-title">Konfirmasi</h2>
+        </div>
+        <div class="card-content">
+          <div class="alert amber">
+            <p class="alert-title">Pastikan rekening anda benar</p>
+            <p class="alert-text">Mohon di cek kembali nominal, nomor rekening, nama, dan data lainnya.</p>
+          </div>
+          
+          <div class="detail-section">
+            <h3 class="detail-title">Detail Transaksi</h3>
+            <div class="detail-grid">
+              <div>Nomor</div>
+              <div id="confirm-phone" class="text-right"></div>
+              <div>Nominal</div>
+              <div id="confirm-nominal" class="text-right"></div>
+              <div>Rate</div>
+              <div id="confirm-rate" class="text-right"></div>
+              <div>Fee</div>
+              <div class="text-right">Rp 2.500</div>
+            </div>
+          </div>
+          
+          <div class="amount-section">
+            <div class="amount-label">Uang yang didapat</div>
+            <div id="confirm-amount" class="amount-value text-green"></div>
+          </div>
+          
+          <div class="detail-section">
+            <h3 class="detail-title">Detail Bank/E-Wallet</h3>
+            <div class="detail-grid">
+              <div>Bank / E-Wallet</div>
+              <div id="confirm-bank" class="text-right"></div>
+              <div>No Rek / No Hp</div>
+              <div id="confirm-account-number" class="text-right"></div>
+              <div>Atas Nama</div>
+              <div id="confirm-account-name" class="text-right"></div>
+            </div>
+          </div>
+          
+          <div class="terms-section">
+            <h3 class="detail-title">Syarat dan Ketentuan</h3>
+            <p class="terms-text">
+              Apakah anda bisa memastikan pulsa anda bukan dari hasil kejahatan seperti: pencurian, hacking, judi
+              online, vcs, dll?
+            </p>
+            <div class="checkbox-wrapper">
+              <input type="checkbox" id="terms" name="terms">
+              <label for="terms">Saya pastikan aman</label>
+            </div>
+          </div>
+          
+          <button id="convert-whatsapp" class="button primary">Convert Via Whatsapp</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <script src="script.js"></script>
+</body>
+</html>
